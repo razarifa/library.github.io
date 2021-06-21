@@ -46,6 +46,9 @@ function Book(title, author, pages, readStatus) {
   return `${this.title} by ${this.author}, ${this.pages}, ${readStatus} `;
  };
 }
+Book.prototype.changeStatus = function (status) {
+ this.readStatus = status;
+};
 //functions
 function addBookToLibrary(book) {
  myLibrary.forEach((lib) => {
@@ -82,7 +85,18 @@ if (localStorage.getItem("myLibrary") !== null) {
      <p><b>Page Count:</b> ${book.pages}</p>
      <div class="button-container">
       <button class="delete">Delete</button>
+      </div>
+      <select name="readingStatus" class="statusSelect" >
+      <option value="willRead">Want to read</option>
+      <option value="isReading">In Progress</option>
+      <option value="haveRead">I have already read</option>
+     </select>
      `;
+    [...card.querySelector(".statusSelect")].forEach((s) => {
+     if (s.value === book.readStatus) {
+      s.setAttribute("selected", "selected");
+     }
+    });
    });
   }
  });
