@@ -1,0 +1,59 @@
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="favicon.ico" sizes="16x16" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Montaga&display=swap"
+   rel="stylesheet"
+  />
+  <title>Library</title>
+ </head>
+ <body>
+  <div class="container">
+   <header>
+    <button>Sign In to Firebase Account</button>
+   </header>
+   <main>
+    <div class="list-container">
+     <div class="list" id="willRead">
+      <h2>Want to Read</h2>
+     </div>
+     <div class="list" id="isReading">
+      <h2>In Progress</h2>
+     </div>
+     <div class="list" id="haveRead">
+      <h2>Finished</h2>
+     </div>
+    </div>
+    <div class="newBookForm">
+     <h2 style="margin: 0 0 6%">Add a book</h2>
+     <input type="text" name="title" id="title" /><input
+      type="text"
+      name="author"
+      id="author"
+     /><input type="number" id="pages" name="pages" />
+     <select name="readingStatus" id="readingStatus">
+      <option value="willRead">Want to read</option>
+      <option value="isReading">In Progress</option>
+      <option value="haveRead">I have already read</option>
+     </select>
+     <button id="add">Add</button>
+     <p>
+      “The consequences of every act are included in the act itself.” <br />
+      ― George Orwell, 1984
+     </p>
+    </div>
+   </main>
+  </div>
+  <script src="js/scripts.js"></script>
+ </body>
+</html>
