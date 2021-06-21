@@ -46,7 +46,6 @@ main {
 }
 .list-container {
  display: flex;
- height: 90vh;
  width: 75%;
  text-align: center;
 }
