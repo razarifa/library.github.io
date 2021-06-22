@@ -2,36 +2,15 @@
 let myLibrary = [
  {
   status: "willRead",
-  books: [
-   {
-    title: "Bulbulu Oldurmek",
-    author: "Filankes",
-    pages: 500,
-    readStatus: "willRead",
-   },
-  ],
+  books: [],
  },
  {
   status: "isReading",
-  books: [
-   {
-    title: "Bulbulu Oldurmek",
-    author: "Filankes",
-    pages: 500,
-    readStatus: "willRead",
-   },
-  ],
+  books: [],
  },
  {
   status: "haveRead",
-  books: [
-   {
-    title: "Bulbulu Oldurmek",
-    author: "Filankes",
-    pages: 500,
-    readStatus: "willRead",
-   },
-  ],
+  books: [],
  },
 ];
 const add = document.querySelector("#add");
