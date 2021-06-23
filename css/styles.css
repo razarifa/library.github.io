@@ -128,20 +128,21 @@ main {
  border: none;
 }
 .newBookForm select {
- padding: 20px;
+ padding: 15px;
  outline: none;
  border: none;
- margin-top: 4%;
  cursor: pointer;
- color: #977e18;
+ color: #5e6c84;
+
  appearance: none;
  -webkit-appearance: none;
  -moz-appearance: none;
  text-align: left;
+ background-color: #ffffff9c;
+ width: 70%;
 }
 .newBookForm button {
  border: none;
- margin-top: 5%;
  padding: 15px;
  cursor: pointer;
  background-color: #000000a2;
