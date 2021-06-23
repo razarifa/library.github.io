@@ -179,7 +179,7 @@ main {
  align-items: center;
 }
 .card select {
- padding: 14px;
+ padding: 20px;
  outline: none;
  border: none;
  margin-top: 4%;
@@ -189,4 +189,6 @@ main {
  -webkit-appearance: none;
  -moz-appearance: none;
  text-align: left;
+ background-color: #ff6666;
+ color: white;
 }

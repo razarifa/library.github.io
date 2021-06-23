@@ -53,8 +53,8 @@ function render() {
          </div>
          <select name="readingStatus" class="statusSelect" >
          <option value="willRead" class="choice">Want to read</option>
-         <option value="isReading" class="choice">In Progress</option>
-         <option value="haveRead" class="choice">I have already read</option>
+         <option value="isReading" class="choice">Reading</option>
+         <option value="haveRead" class="choice">Have read</option>
         </select>
         `;
    [...card.querySelector(".statusSelect")].forEach((s) => {
