@@ -50,7 +50,7 @@ main {
 .list-container {
  display: flex;
  justify-content: space-between;
- width: 70%;
+ width: 75%;
  /* flex-direction: column; */
  text-align: center;
 }
@@ -66,7 +66,7 @@ main {
  overflow-y: auto;
  border-radius: 10px;
  padding: 10px;
- margin: 1%;
+ /* margin: 1%; */
 }
 .list h2 {
  color: #5e6c84;
