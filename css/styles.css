@@ -160,3 +160,11 @@ main {
   margin-bottom: 6%;
  }
 }
+#willRead,
+#isReading,
+#haveRead {
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}

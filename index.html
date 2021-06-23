@@ -24,29 +24,37 @@
    </header>
    <main>
     <div class="list-container">
-     <div class="list" id="willRead">
+     <div class="list">
       <h2>Want to Read</h2>
+      <div id="willRead"></div>
      </div>
-     <div class="list" id="isReading">
+     <div class="list">
       <h2>In Progress</h2>
+      <div id="isReading"></div>
      </div>
-     <div class="list" id="haveRead">
+     <div class="list">
       <h2>Finished</h2>
-     </div> 
+      <div id="haveRead"></div>
+     </div>
     </div>
     <div class="newBookForm">
      <h2 style="margin: 0 0 6%">Add a book</h2>
-     <input type="text" name="title" id="title" /><input
-      type="text"
-      name="author"
-      id="author"
-     /><input type="number" id="pages" name="pages" />
-     <select name="readingStatus" id="readingStatus">
-      <option value="willRead">Want to read</option>
-      <option value="isReading">In Progress</option>
-      <option value="haveRead">I have already read</option>
-     </select>
-     <button id="add">Add</button>
+     <form>
+      <input type="text" name="title" id="title" placeholder="Title" /><input
+       type="text"
+       name="author"
+       id="author"
+       placeholder="Author"
+      /><input type="number" id="pages" name="pages" placeholder="Pages" />
+      <select name="readingStatus" id="readingStatus">
+       <option value="willRead">Want to read</option>
+       <option value="isReading">In Progress</option>
+       <option value="haveRead">I have already read</option>
+      </select>
+      <br />
+      <button id="add" type="submit">Add</button>
+     </form>
+
      <p>
       “The consequences of every act are included in the act itself.” <br />
       ― George Orwell, 1984
