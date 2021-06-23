@@ -38,13 +38,25 @@
      </div>
     </div>
     <div class="newBookForm">
-     <h2 style="margin: 0 0 6%">Add a book</h2>
+     <h2 style="margin: 0 0 6%">
+      <img src="images/storytelling.png" alt="" width="50px" height="50px" />
+      <br />
+      Add a book
+     </h2>
+
      <form>
-      <input type="text" name="title" id="title" placeholder="Title" /><input
+      <input
+       type="text"
+       name="title"
+       id="title"
+       placeholder="Title"
+       required
+      /><input
        type="text"
        name="author"
        id="author"
        placeholder="Author"
+       required
       /><input type="number" id="pages" name="pages" placeholder="Pages" />
       <select name="readingStatus" id="readingStatus">
        <option value="willRead">Want to read</option>

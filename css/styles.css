@@ -30,7 +30,7 @@ header {
  width: 75vw;
  display: flex;
  align-items: center;
- justify-content: flex-start;
+ justify-content: space-between;
  font-size: large;
  font-style: italic;
 }
@@ -100,11 +100,19 @@ main {
 }
 
 .newBookForm {
+ /* display: flex;
+ flex-direction: column;
+ justify-content: flex-start; */
+ width: 30%;
+ padding: 0 30px;
+ align-items: center;
+}
+.newBookForm img {
+ margin: 3%;
+}
+.newBookForm form {
  display: flex;
  flex-direction: column;
- justify-content: flex-start;
- width: 25%;
- padding: 0 30px;
 }
 .newBookForm input {
  margin-top: 4%;
@@ -113,13 +121,15 @@ main {
  border: none;
 }
 .newBookForm select {
- padding: 15px;
+ padding: 20px;
  outline: none;
- border: 1px solid #c1442ea6;
+ border: none;
  margin-top: 4%;
  cursor: pointer;
  color: #c1432e;
  appearance: none;
+ -webkit-appearance: none;
+ -moz-appearance: none;
  text-align: left;
 }
 .newBookForm button {
@@ -167,4 +177,16 @@ main {
  display: flex;
  flex-direction: column;
  align-items: center;
+}
+.card select {
+ padding: 14px;
+ outline: none;
+ border: none;
+ margin-top: 4%;
+ cursor: pointer;
+ color: #000000;
+ appearance: none;
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ text-align: left;
 }
