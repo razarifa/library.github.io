@@ -45,16 +45,15 @@ function render() {
    card.classList.add("card");
    document.querySelector(`#${book.readStatus}`).appendChild(card);
    card.innerHTML = `
+   <div class="button-container">
+         <button><i class="fa fa-trash delete"></i> </button>
+         </div>
         <p><b>Title:</b>${book.title}</p>
         <p><b>Author: </b>${book.author}</p>
-        <p><b>Page Count:</b> ${book.pages}</p>
-        <div class="button-container">
-         <button class="delete">Delete</button>
-         </div>
          <select name="readingStatus" class="statusSelect" >
          <option value="willRead" class="choice">Want to read</option>
-         <option value="isReading" class="choice">Reading</option>
-         <option value="haveRead" class="choice">Have read</option>
+         <option value="isReading" class="choice">In Progress</option>
+         <option value="haveRead" class="choice">I have already read</option>
         </select>
         `;
    [...card.querySelector(".statusSelect")].forEach((s) => {
@@ -68,17 +67,19 @@ function render() {
 
 function removeCard(e) {
  //delete from array
+ console.log(e.parentElement.parentElement.parentElement.children[1].innerText);
  books.map((book) => {
   if (
-   e.parentElement.parentElement.children[0].innerText.substr(6).toString() ===
-   book.title
+   e.parentElement.parentElement.parentElement.children[1].innerText
+    .substr(6)
+    .toString() === book.title
   ) {
    books.splice(books.indexOf(book), 1);
   }
  });
  //delete from dom
- e.parentElement.parentElement.parentElement.removeChild(
-  e.parentElement.parentElement
+ e.parentElement.parentElement.parentElement.parentElement.removeChild(
+  e.parentElement.parentElement.parentElement
  );
 
  localStorage.setItem("books", JSON.stringify(books));
@@ -86,7 +87,7 @@ function removeCard(e) {
 function changeStatus(e) {
  books.map((book) => {
   if (
-   e.parentElement.children[0].innerText.substr(6).toString() === book.title
+   e.parentElement.children[1].innerText.substr(6).toString() === book.title
   ) {
    book.readStatus = e.options[e.options.selectedIndex].value;
    localStorage.setItem("books", JSON.stringify(books));
@@ -98,6 +99,7 @@ function changeStatus(e) {
  list.addEventListener("click", (e) => {
   if (e.target.matches(".delete")) {
    removeCard(e.target);
+   console.log(e.target);
   }
  });
 });
