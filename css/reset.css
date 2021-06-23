@@ -1,5 +1,8 @@
 * {
  box-sizing: border-box;
+ appearance: none;
+ -webkit-appearance: none;
+ -moz-appearance: none;
 }
 html {
  line-height: 1.15; /* 1 */

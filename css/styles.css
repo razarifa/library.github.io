@@ -91,11 +91,11 @@ main {
 }
 
 .list:first-child {
- background-color: #4b6777;
+ background-color: #8044e09f;
  color: white;
 }
 .list:last-child {
- background-color: #c1432e;
+ background-color: #000000a2;
  color: white;
 }
 
@@ -126,7 +126,7 @@ main {
  border: none;
  margin-top: 4%;
  cursor: pointer;
- color: #c1432e;
+ color: #977e18;
  appearance: none;
  -webkit-appearance: none;
  -moz-appearance: none;
@@ -137,7 +137,7 @@ main {
  margin-top: 5%;
  padding: 15px;
  cursor: pointer;
- background-color: #4b6777;
+ background-color: #000000a2;
  color: white;
  transition: 0.2s all;
 }
