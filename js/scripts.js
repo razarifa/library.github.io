@@ -173,22 +173,28 @@ function removeCard(e) {
  );
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   db
-    .collection("books")
-    .get()
-    .then((snapshot) => {
-     snapshot.docs.forEach((book) => {
-      if (
-       book.data().title ===
-       e.parentElement.parentElement.parentElement.children[1].innerText
-        .substr(6)
-        .toString()
-      ) {
-       let id = book.id;
-       db.collection("books").doc(id).delete();
-      }
-     });
-    });
+   //  db
+   //   .collection("books")
+   //   .get()
+   //   .then((snapshot) => {
+   //    snapshot.docs.forEach((book) => {
+   //     if (
+   //      book.data().title ===
+   //      e.parentElement.parentElement.parentElement.children[1].innerText
+   //       .substr(6)
+   //       .toString()
+   //     ) {
+   //      let id = book.id;
+   //      db.collection("books").doc(id).delete();
+   //     }
+   //    });
+   //   });
+   user.delete().catch(function (error) {
+    if (error.code === "auth/requires-recent-login") {
+     window.alert("Please sign-in and try again.");
+     firebase.auth().signOut();
+    }
+   });
   } else {
    localStorage.setItem("books", JSON.stringify(books));
   }
