@@ -42,10 +42,13 @@ function addBookToLibrary(e) {
  this.reset();
 }
 
-function changeArray(data) {
+function setBook(data) {
  books = data;
 }
 async function render() {
+ document.querySelector(`#willRead`).innerHTML = "";
+ document.querySelector(`#isReading`).innerHTML = "";
+ document.querySelector(`#haveRead`).innerHTML = "";
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
    console.log("yes");
@@ -58,41 +61,66 @@ async function render() {
     });
    if (response != null) {
     books = response;
+    console.log(books);
+    books.forEach((book, index) => {
+     if (
+      book.readStatus ===
+      document.querySelector(`#${book.readStatus}`).getAttribute("id")
+     ) {
+      let card = document.createElement("div");
+      card.classList.add("card");
+      document.querySelector(`#${book.readStatus}`).appendChild(card);
+      card.innerHTML = `
+       <div class="button-container">
+             <button><i class="fa fa-trash delete"></i> </button>
+             </div>
+            <p><b>Title:</b>${book.title}</p>
+            <p><b>Author: </b>${book.author}</p>
+             <select name="readingStatus" class="statusSelect" >
+             <option value="willRead" class="choice">Want to read</option>
+             <option value="isReading" class="choice">In Progress</option>
+             <option value="haveRead" class="choice">I have already read</option>
+            </select>
+            `;
+      [...card.querySelector(".statusSelect")].forEach((s) => {
+       if (s.value === book.readStatus) {
+        s.setAttribute("selected", "selected");
+       }
+      });
+     }
+    });
    }
   } else {
    // User is signed out.
    if (localStorage.getItem("books") !== null) {
     books = JSON.parse(localStorage.getItem("books"));
    }
-   return false;
-  }
- });
- document.querySelector(`#willRead`).innerHTML = "";
- document.querySelector(`#isReading`).innerHTML = "";
- document.querySelector(`#haveRead`).innerHTML = "";
- books.forEach((book, index) => {
-  if (
-   book.readStatus ===
-   document.querySelector(`#${book.readStatus}`).getAttribute("id")
-  ) {
-   let card = document.createElement("div");
-   card.classList.add("card");
-   document.querySelector(`#${book.readStatus}`).appendChild(card);
-   card.innerHTML = `
-   <div class="button-container">
-         <button><i class="fa fa-trash delete"></i> </button>
-         </div>
-        <p><b>Title:</b>${book.title}</p>
-        <p><b>Author: </b>${book.author}</p>
-         <select name="readingStatus" class="statusSelect" >
-         <option value="willRead" class="choice">Want to read</option>
-         <option value="isReading" class="choice">In Progress</option>
-         <option value="haveRead" class="choice">I have already read</option>
-        </select>
-        `;
-   [...card.querySelector(".statusSelect")].forEach((s) => {
-    if (s.value === book.readStatus) {
-     s.setAttribute("selected", "selected");
+   console.log(books);
+   books.forEach((book, index) => {
+    if (
+     book.readStatus ===
+     document.querySelector(`#${book.readStatus}`).getAttribute("id")
+    ) {
+     let card = document.createElement("div");
+     card.classList.add("card");
+     document.querySelector(`#${book.readStatus}`).appendChild(card);
+     card.innerHTML = `
+     <div class="button-container">
+           <button><i class="fa fa-trash delete"></i> </button>
+           </div>
+          <p><b>Title:</b>${book.title}</p>
+          <p><b>Author: </b>${book.author}</p>
+           <select name="readingStatus" class="statusSelect" >
+           <option value="willRead" class="choice">Want to read</option>
+           <option value="isReading" class="choice">In Progress</option>
+           <option value="haveRead" class="choice">I have already read</option>
+          </select>
+          `;
+     [...card.querySelector(".statusSelect")].forEach((s) => {
+      if (s.value === book.readStatus) {
+       s.setAttribute("selected", "selected");
+      }
+     });
     }
    });
   }
