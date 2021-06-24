@@ -26,7 +26,7 @@ initApp = function () {
     var providerData = user.providerData;
     user.getIdToken().then(function (accessToken) {
      userVar = true;
-
+     console.log(userVar);
      document.getElementById(
       "info"
      ).innerHTML = `<img width="35px" height="35px" style="border-radius: 50%" src="${photoURL}"/>     <span>${displayName}</span><div onclick="signOut()" class="signOutBtn">Sign out</div>`;
