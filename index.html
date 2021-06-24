@@ -160,9 +160,8 @@
        var phoneNumber = user.phoneNumber;
        var providerData = user.providerData;
        user.getIdToken().then(function (accessToken) {
-        document.getElementById("sign-in-status").textContent = "Signed in";
         document.getElementById("sign-in").innerHTML =
-         "<button onclick='signOut()'>Sign out</button>";
+         "<button onclick='signOut()' class='signOutBtn'>Sign out</button>";
         document.getElementById("account-details").innerHTML = JSON.stringify(
          {
           providerData: providerData,
@@ -173,9 +172,7 @@
        });
       } else {
        // User is signed out.
-       document.getElementById("sign-in-status").textContent = "Signed out";
-       document.getElementById("sign-in").textContent = "Sign in";
-       document.getElementById("account-details").textContent = "null";
+       document.getElementById("account-details").textContent = "";
        var ui = new firebaseui.auth.AuthUI(firebase.auth());
        ui.start("#firebaseui-auth-container", uiConfig);
       }

@@ -208,3 +208,8 @@ main {
  margin: 5% !important;
  /* background-color: white; */
 }
+.signOutBtn {
+ border: none;
+ padding: 10px;
+ cursor: pointer;
+}
