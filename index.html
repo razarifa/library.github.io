@@ -122,8 +122,7 @@
   <script type="text/javascript">
    // FirebaseUI config.
    var uiConfig = {
-    signInSuccessUrl:
-     "https://firebase.google.com/docs/web/setup#from-the-cdn_1",
+    signInSuccessUrl: "https://razarifa.github.io/library.github.io/",
     signInOptions: [
      // Leave the lines as is for the providers you want to offer your users.
      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -138,9 +137,7 @@
    // Initialize the FirebaseUI Widget using Firebase.
    var ui = new firebaseui.auth.AuthUI(firebase.auth());
    // The start method will wait until the DOM is loaded.
-   if (ui.isPendingRedirect()) {
-    ui.start("#firebaseui-auth-container", uiConfig);
-   }
+   ui.start("#firebaseui-auth-container", uiConfig);
    initApp = function () {
     firebase.auth().onAuthStateChanged(
      function (user) {
