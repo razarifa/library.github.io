@@ -52,6 +52,7 @@ initApp = function () {
    console.log(error);
   }
  );
+ console.log("daxilde: " + userVar);
 };
 
 window.addEventListener("load", function () {

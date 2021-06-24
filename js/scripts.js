@@ -24,6 +24,11 @@ function addBookToLibrary(e) {
  let formPages = document.querySelector("#pages").value;
  let formReadStatus = document.querySelector("#readingStatus").value;
  const book = new Book(formTitle, formAuthor, formPages, formReadStatus);
+
+ //  if (userVar == true) {
+ //   db.collection("books").add(book);
+ //   // db.collection("books").
+ //  }
  books.push(book);
  localStorage.setItem("books", JSON.stringify(books));
  render();
@@ -112,7 +117,3 @@ function changeStatus(e) {
  });
 });
 render();
-if (userVar == true) {
- console.log(userVar);
- console.log("yes");
-}
