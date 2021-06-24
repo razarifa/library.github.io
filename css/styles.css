@@ -229,7 +229,7 @@ main {
   rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 #info *:not(img) {
- width: 268;
+ width: 28%;
 }
 #info * {
  margin: 2%;
