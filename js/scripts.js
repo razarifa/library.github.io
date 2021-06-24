@@ -17,7 +17,7 @@ document.querySelector("form").addEventListener("submit", addBookToLibrary);
 
 //functions
 
-function addBookToLibrary(e) {
+async function addBookToLibrary(e) {
  e.preventDefault();
  let formTitle = document.querySelector("#title").value;
  let formAuthor = document.querySelector("#author").value;
@@ -28,13 +28,11 @@ function addBookToLibrary(e) {
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   let yourData = { name: "dfksjdf" };
-
-   firebase
+   await firebase
     .database()
     .ref("users")
     .child(user.uid)
-    .set(yourdata)
+    .set({ name: "dfksjdf" })
     .then((data) => {
      console.log("Saved Data", data);
     })
@@ -73,7 +71,7 @@ async function render() {
    //    chartData = querySnapshot.docs.map((doc) => doc.data());
    //    return chartData;
    //   });
-   let response = firebase
+   let response = await firebase
     .database()
     .ref("users")
     .child(user.uid)
