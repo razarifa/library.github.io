@@ -118,6 +118,19 @@
    firebase.initializeApp(firebaseConfig);
   </script>
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+  <script>
+   function signOut() {
+    firebase
+     .auth()
+     .signOut()
+     .then(() => {
+      console.log("signed out finally");
+     })
+     .catch((error) => {
+      console.log("error");
+     });
+   }
+  </script>
 
   <script type="text/javascript">
    // FirebaseUI config.

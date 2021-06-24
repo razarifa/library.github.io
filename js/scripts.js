@@ -16,9 +16,7 @@ function Book(title, author, pages, readStatus) {
 document.querySelector("form").addEventListener("submit", addBookToLibrary);
 
 //functions
-function signOut() {
- console.log("hello world");
-}
+
 function addBookToLibrary(e) {
  e.preventDefault();
  let formTitle = document.querySelector("#title").value;
