@@ -114,4 +114,5 @@ function changeStatus(e) {
 render();
 if (userVar == true) {
  console.log(userVar);
+ console.log("yes");
 }
