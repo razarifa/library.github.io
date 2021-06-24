@@ -143,8 +143,6 @@
     // tosUrl and privacyPolicyUrl accept either url string or a callback
     // function.
     // Terms of service url/callback.
-    tosUrl: "<your-tos-url>",
-    // Privacy policy url/callback.
    };
 
    // Initialize the FirebaseUI Widget using Firebase.
@@ -166,13 +164,10 @@
         document.getElementById("sign-in-status").textContent = "Signed in";
         document.getElementById("sign-in").innerHTML =
          "<button onclick='signOut()'>Sign out</button>";
-        document.getElementById("account-details").innerHTML = JSON.stringify(
-         {
-          providerData: providerData,
-         },
-         null,
-         "  "
-        );
+        document.getElementById("account-details").innerHTML = {
+         name: providerData.displayName,
+         imgUrl: providerData.photoURL,
+        };
        });
       } else {
        // User is signed out.
