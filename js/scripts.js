@@ -112,4 +112,6 @@ function changeStatus(e) {
  });
 });
 render();
-console.log(userVar);
+if (userVar == true) {
+ console.log(userVar);
+}
