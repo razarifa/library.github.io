@@ -32,7 +32,12 @@ async function addBookToLibrary(e) {
     .database()
     .ref("users")
     .child(user.uid)
-    .set({ name: "dfksjdf" })
+    .set({
+     title: formTitle,
+     author: formAuthor,
+     pages: formPages,
+     readStatus: formReadStatus,
+    })
     .then((data) => {
      console.log("Saved Data", data);
     })
