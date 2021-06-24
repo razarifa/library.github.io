@@ -34,17 +34,7 @@
   <div class="container">
    <header>
     <div id="firebaseui-auth-container"></div>
-    <div id="info">
-     <img
-      width="35px"
-      height="35px"
-      style="border-radius: 50%"
-      src="https://lh3.googleusercontent.com/a-/AOh14GjvIg-seFYIZPuz6fxO8A47rdEiqulQhDwFFPcG0ks=s96-c"
-      alt=""
-     />
-     <span>Zarifa</span>
-     <div onclick="signOut()" class="signOutBtn">Sign out</div>
-    </div>
+    <div id="info"></div>
    </header>
    <main>
     <div id="sign-in-status"></div>
@@ -171,8 +161,9 @@
        var phoneNumber = user.phoneNumber;
        var providerData = user.providerData;
        user.getIdToken().then(function (accessToken) {
-        document.getElementById("sign-in").innerHTML =
-         "<button onclick='signOut()' class='signOutBtn'>Sign out</button>";
+        document.getElementById("info").innerHTML =
+         '<img width="35px" height="35px" style="border-radius: 50%" src="https://lh3.googleusercontent.com/a-/ AOh14GjvIg-seFYIZPuz6fxO8A47rdEiqulQhDwFFPcG0ks=s96-c"/>     <span>Zarifa</span><div onclick="signOut()" class="signOutBtn">Sign out</div>';
+        document.getElementById("info").classList.add(".info");
         document.getElementById("account-details").innerHTML = JSON.stringify(
          {
           providerData: providerData,
@@ -186,6 +177,7 @@
        document.getElementById("account-details").textContent = "";
        var ui = new firebaseui.auth.AuthUI(firebase.auth());
        ui.start("#firebaseui-auth-container", uiConfig);
+       document.getElementById("info").classList.remove(".info");
       }
      },
      function (error) {
