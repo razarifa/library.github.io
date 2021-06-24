@@ -33,7 +33,6 @@
  <body>
   <div class="container">
    <header>
-    <button>Sign In With Firebase Account</button>
     <div id="firebaseui-auth-container"></div>
    </header>
    <main>
@@ -164,10 +163,13 @@
         document.getElementById("sign-in-status").textContent = "Signed in";
         document.getElementById("sign-in").innerHTML =
          "<button onclick='signOut()'>Sign out</button>";
-        document.getElementById("account-details").innerHTML = {
-         name: providerData.displayName,
-         imgUrl: providerData.photoURL,
-        };
+        document.getElementById("account-details").innerHTML = JSON.stringify(
+         {
+          providerData: providerData,
+         },
+         null,
+         "  "
+        );
        });
       } else {
        // User is signed out.

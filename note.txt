@@ -52,3 +52,27 @@
      // ...
     });
   </script>
+
+    function signOut() {
+    firebase
+     .auth()
+     .signOut()
+     .then(() => {
+      console.log("signed out finally");
+     })
+     .catch((error) => {
+      
+     });
+   }
+
+
+   {
+          displayName: displayName,
+          email: email,
+          emailVerified: emailVerified,
+          phoneNumber: phoneNumber,
+          photoURL: photoURL,
+          uid: uid,
+          accessToken: accessToken,
+          providerData: providerData,
+         },
