@@ -51,7 +51,8 @@ async function render() {
  document.querySelector(`#haveRead`).innerHTML = "";
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   console.log("yes");
+   var uid = user.uid;
+   console.log(uid);
    let response = await db
     .collection("books")
     .get()
