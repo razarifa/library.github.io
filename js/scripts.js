@@ -31,7 +31,7 @@ function addBookToLibrary(e) {
    let yourData = { name: "dfksjdf" };
 
    firebase
-    .database()
+    .firestore()
     .ref("users")
     .child(user.uid)
     .set(yourdata)
@@ -74,7 +74,7 @@ async function render() {
    //    return chartData;
    //   });
    let response = firebase
-    .database()
+    .firestore()
     .ref("users")
     .child(uid)
     .once("value")
@@ -225,15 +225,4 @@ function changeStatus(e) {
  });
 });
 
-document.querySelectorAll(".list").forEach((l) => {
- l.addEventListener("change", () => {
-  db
-   .collection("books")
-   .get()
-   .then((querySnapshot) => {
-    chartData = querySnapshot.docs.map((doc) => doc.data());
-    books = chartData;
-   });
- });
-});
 render();
