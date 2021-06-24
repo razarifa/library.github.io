@@ -62,7 +62,6 @@ async function render() {
     });
    if (response != null) {
     books = response;
-    console.log(books);
     books.forEach((book, index) => {
      if (
       book.readStatus ===
@@ -96,7 +95,6 @@ async function render() {
    if (localStorage.getItem("books") !== null) {
     books = JSON.parse(localStorage.getItem("books"));
    }
-   console.log(books);
    books.forEach((book, index) => {
     if (
      book.readStatus ===
