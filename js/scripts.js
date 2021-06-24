@@ -24,21 +24,49 @@ function addBookToLibrary(e) {
  let formPages = document.querySelector("#pages").value;
  let formReadStatus = document.querySelector("#readingStatus").value;
  const book = new Book(formTitle, formAuthor, formPages, formReadStatus);
-
- //  if (userVar == true) {
- //   db.collection("books").add(book);
- //   // db.collection("books").
- //  }
  books.push(book);
- localStorage.setItem("books", JSON.stringify(books));
+
+ firebase.auth().onAuthStateChanged(async function (user) {
+  if (user) {
+   db.collection("books").add({
+    title: formTitle,
+    author: formAuthor,
+    pages: formPages,
+    readStatus: formReadStatus,
+   });
+  } else {
+   localStorage.setItem("books", JSON.stringify(books));
+  }
+ });
  render();
  this.reset();
 }
 
-function render() {
- if (localStorage.getItem("books") !== null) {
-  books = JSON.parse(localStorage.getItem("books"));
- }
+function changeArray(data) {
+ books = data;
+}
+async function render() {
+ firebase.auth().onAuthStateChanged(async function (user) {
+  if (user) {
+   console.log("yes");
+   let response = await db
+    .collection("books")
+    .get()
+    .then((querySnapshot) => {
+     chartData = querySnapshot.docs.map((doc) => doc.data());
+     return chartData;
+    });
+   if (response != null) {
+    books = response;
+   }
+  } else {
+   // User is signed out.
+   if (localStorage.getItem("books") !== null) {
+    books = JSON.parse(localStorage.getItem("books"));
+   }
+   return false;
+  }
+ });
  document.querySelector(`#willRead`).innerHTML = "";
  document.querySelector(`#isReading`).innerHTML = "";
  document.querySelector(`#haveRead`).innerHTML = "";
@@ -73,7 +101,6 @@ function render() {
 
 function removeCard(e) {
  //delete from array
- console.log(e.parentElement.parentElement.parentElement.children[1].innerText);
  books.map((book) => {
   if (
    e.parentElement.parentElement.parentElement.children[1].innerText
@@ -87,8 +114,29 @@ function removeCard(e) {
  e.parentElement.parentElement.parentElement.parentElement.removeChild(
   e.parentElement.parentElement.parentElement
  );
-
- localStorage.setItem("books", JSON.stringify(books));
+ firebase.auth().onAuthStateChanged(async function (user) {
+  if (user) {
+   db
+    .collection("books")
+    .get()
+    .then((snapshot) => {
+     snapshot.docs.forEach((book) => {
+      if (
+       book.data().title ===
+       e.parentElement.parentElement.parentElement.children[1].innerText
+        .substr(6)
+        .toString()
+      ) {
+       let id = book.id;
+       db.collection("books").doc(id).delete();
+      }
+     });
+    });
+  } else {
+   localStorage.setItem("books", JSON.stringify(books));
+  }
+ });
+ //delete from firebase
 }
 function changeStatus(e) {
  books.map((book) => {
@@ -96,7 +144,14 @@ function changeStatus(e) {
    e.parentElement.children[1].innerText.substr(6).toString() === book.title
   ) {
    book.readStatus = e.options[e.options.selectedIndex].value;
-   localStorage.setItem("books", JSON.stringify(books));
+
+   firebase.auth().onAuthStateChanged(async function (user) {
+    if (user) {
+     console.log("update write");
+    } else {
+     localStorage.setItem("books", JSON.stringify(books));
+    }
+   });
    render();
   }
  });
@@ -105,7 +160,6 @@ function changeStatus(e) {
  list.addEventListener("click", (e) => {
   if (e.target.matches(".delete")) {
    removeCard(e.target);
-   console.log(e.target);
   }
  });
 });
@@ -114,6 +168,18 @@ function changeStatus(e) {
   if (e.target.matches(".statusSelect")) {
    changeStatus(e.target);
   }
+ });
+});
+
+document.querySelectorAll(".list").forEach((l) => {
+ l.addEventListener("change", () => {
+  db
+   .collection("books")
+   .get()
+   .then((querySnapshot) => {
+    chartData = querySnapshot.docs.map((doc) => doc.data());
+    books = chartData;
+   });
  });
 });
 render();
