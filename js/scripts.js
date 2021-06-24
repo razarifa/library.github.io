@@ -31,7 +31,7 @@ function addBookToLibrary(e) {
    let yourData = { name: "dfksjdf" };
 
    firebase
-    .firestore()
+    .database()
     .ref("users")
     .child(user.uid)
     .set(yourdata)
@@ -74,7 +74,7 @@ async function render() {
    //    return chartData;
    //   });
    let response = firebase
-    .firestore()
+    .database()
     .ref("users")
     .child(user.uid)
     .once("value")
