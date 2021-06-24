@@ -112,3 +112,4 @@ function changeStatus(e) {
  });
 });
 render();
+console.log(userVar);
