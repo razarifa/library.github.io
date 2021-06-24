@@ -21,13 +21,20 @@
    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
    crossorigin="anonymous"
   />
-
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+  <link
+   type="text/css"
+   rel="stylesheet"
+   href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css"
+  />
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
   <title>Library</title>
  </head>
  <body>
   <div class="container">
    <header>
     <button>Sign In With Firebase Account</button>
+    <div id="firebaseui-auth-container"></div>
    </header>
    <main>
     <div class="list-container">
@@ -82,5 +89,53 @@
    </main>
   </div>
   <script src="js/scripts.js"></script>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+  <script>
+   var firebaseConfig = {
+    apiKey: "AIzaSyDcLQtt910rqoUTdgl2FYKitwTRzWCvl0g",
+    authDomain: "library-2729b.firebaseapp.com",
+    databaseURL: "https://library-2729b.firebaseio.com",
+    projectId: "library-2729b",
+    storageBucket: "library-2729b.appspot.com",
+    messagingSenderId: "858836802837",
+    appId: "1:858836802837:web:6754f0fe3cc3219d0b9d1c",
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+
+  <script type="text/javascript">
+   // FirebaseUI config.
+   var uiConfig = {
+    signInSuccessUrl:
+     "https://firebase.google.com/docs/web/setup#from-the-cdn_1",
+    signInOptions: [
+     // Leave the lines as is for the providers you want to offer your users.
+     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    ],
+    // tosUrl and privacyPolicyUrl accept either url string or a callback
+    // function.
+    // Terms of service url/callback.
+    tosUrl: "<your-tos-url>",
+    // Privacy policy url/callback.
+   };
+
+   // Initialize the FirebaseUI Widget using Firebase.
+   var ui = new firebaseui.auth.AuthUI(firebase.auth());
+   // The start method will wait until the DOM is loaded.
+   ui.start("#firebaseui-auth-container", uiConfig);
+  </script>
  </body>
 </html>
