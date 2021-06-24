@@ -28,6 +28,8 @@ function addBookToLibrary(e) {
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
+   let yourData = { name: "dfksjdf" };
+
    firebase
     .database()
     .ref("users")
