@@ -28,12 +28,23 @@ function addBookToLibrary(e) {
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   db.collection("books").add({
-    title: formTitle,
-    author: formAuthor,
-    pages: formPages,
-    readStatus: formReadStatus,
-   });
+   firebase
+    .database()
+    .ref("users")
+    .child(user.uid)
+    .set(yourdata)
+    .then((data) => {
+     console.log("Saved Data", data);
+    })
+    .catch((error) => {
+     console.log("Storing Error", error);
+    });
+   //  db.collection("books").add({
+   //   title: formTitle,
+   //   author: formAuthor,
+   //   pages: formPages,
+   //   readStatus: formReadStatus,
+   //  });
   } else {
    localStorage.setItem("books", JSON.stringify(books));
   }
@@ -51,15 +62,29 @@ async function render() {
  document.querySelector(`#haveRead`).innerHTML = "";
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   var uid = user.uid;
-   console.log(uid);
-   let response = await db
-    .collection("books")
-    .get()
-    .then((querySnapshot) => {
-     chartData = querySnapshot.docs.map((doc) => doc.data());
-     return chartData;
+   //  var uid = user.uid;
+   //  console.log(uid);
+   //  let response = await db
+   //   .collection("books")
+   //   .get()
+   //   .then((querySnapshot) => {
+   //    chartData = querySnapshot.docs.map((doc) => doc.data());
+   //    return chartData;
+   //   });
+   let response = firebase
+    .database()
+    .ref("users")
+    .child(uid)
+    .once("value")
+    .then((data) => {
+     let fetchedData = data.val();
+     console.log("Fetched Data", fetchedData);
+     return fetchedData;
+    })
+    .catch((error) => {
+     console.log("Fetching Error", error);
     });
+   console.log(response);
    if (response != null) {
     books = response;
     books.forEach((book, index) => {
