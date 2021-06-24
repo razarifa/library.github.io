@@ -76,7 +76,7 @@ async function render() {
    let response = firebase
     .firestore()
     .ref("users")
-    .child(uid)
+    .child(user.uid)
     .once("value")
     .then((data) => {
      let fetchedData = data.val();
