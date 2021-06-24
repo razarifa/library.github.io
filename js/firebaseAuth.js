@@ -44,6 +44,8 @@ initApp = function () {
    document.getElementById("info").innerHTML = "";
   }
  });
+ let user = firebase.auth().currentUser;
+ console.log(user);
 };
 
 window.addEventListener("load", function () {
