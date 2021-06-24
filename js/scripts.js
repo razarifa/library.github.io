@@ -211,3 +211,5 @@ document.querySelectorAll(".list").forEach((l) => {
  });
 });
 render();
+let user = firebase.auth().currentUser;
+console.log(user);
