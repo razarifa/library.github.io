@@ -151,16 +151,10 @@
        var providerData = user.providerData;
        user.getIdToken().then(function (accessToken) {
         document.getElementById("sign-in-status").textContent = "Signed in";
-        document.getElementById("sign-in").textContent = "Sign out";
-        document.getElementById("account-details").textContent = JSON.stringify(
+        document.getElementById("sign-in").innerHTML =
+         "<button onclick='signOut()'>Sign out</button>";
+        document.getElementById("account-details").innerHTML = JSON.stringify(
          {
-          displayName: displayName,
-          email: email,
-          emailVerified: emailVerified,
-          phoneNumber: phoneNumber,
-          photoURL: photoURL,
-          uid: uid,
-          accessToken: accessToken,
           providerData: providerData,
          },
          null,
