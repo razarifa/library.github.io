@@ -34,7 +34,6 @@ async function addBookToLibrary(e) {
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   console.log(m);
    await firebase
     .database()
     .ref("users")
