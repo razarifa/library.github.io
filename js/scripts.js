@@ -85,7 +85,6 @@ async function render() {
    console.table(response);
 
    if (response != null) {
-    console.log("book " + book);
     for (res in response) {
      book = response[res];
      if (
