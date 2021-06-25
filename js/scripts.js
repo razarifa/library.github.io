@@ -34,6 +34,7 @@ async function addBookToLibrary(e) {
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
+   console.log(m);
    await firebase
     .database()
     .ref("users")
@@ -93,6 +94,7 @@ async function render() {
      ) {
       let card = document.createElement("div");
       card.classList.add("card");
+      card.setAttribute("data-index", res);
       document.querySelector(`#${book.readStatus}`).appendChild(card);
       card.innerHTML = `
       <div class="button-container">
