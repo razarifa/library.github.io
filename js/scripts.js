@@ -86,7 +86,7 @@ async function render() {
 
    if (response != null) {
     for (res in response) {
-     book = response[res];
+     let book = response[res];
      if (
       book.readStatus ===
       document.querySelector(`#${book.readStatus}`).getAttribute("id")
