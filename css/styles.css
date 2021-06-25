@@ -1,47 +1,64 @@
 html {
- /* background-color: #ececec; */
  font-family: "Montaga", serif;
- /* background-color: #f5f5f5; */
- /* background-color: rgb(200, 192, 252); */
 }
 body {
  display: flex;
  justify-content: center;
 }
-
+/*list scrollbar */
 .list::-webkit-scrollbar {
  width: 1em;
 }
-
 .list::-webkit-scrollbar-track {
  box-shadow: inset 0 0 6px #f4f5f7;
  border-radius: 25px;
 }
-
 .list::-webkit-scrollbar-thumb {
  background-color: #f4f5f7;
  outline: 1px solid #f4f5f7;
  border-radius: 25px;
 }
+/* General container */
 .container {
  width: 90vw;
  display: flex;
  flex-direction: column;
 }
+/* Header */
 header {
  height: 10vh;
  width: 75vw;
  display: flex;
  align-items: center;
- /* justify-content: space-between; */
  font-size: large;
  font-style: italic;
 }
-header button {
- border: none;
- padding: 10px;
- cursor: pointer;
+.info {
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ padding: 2px 17px 2px 0;
+ width: 250px;
+ font-style: normal;
+ background-color: #ffffff;
+ border-radius: 10px;
+ height: 60%;
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+  rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+ padding: 20px;
 }
+#info *:not(img) {
+ width: 28%;
+}
+#info * {
+ margin: 2%;
+}
+.signOutBtn {
+ border: none;
+ cursor: pointer;
+ background-color: #ffffff;
+}
+/* Main */
 main {
  height: 90vh;
  display: flex;
@@ -51,23 +68,29 @@ main {
  display: flex;
  justify-content: space-between;
  width: 75%;
- /* flex-direction: column; */
  text-align: center;
 }
 .list {
  min-height: 80vh;
  width: 31%;
  background-color: #f4f5f7;
- /* background-color: rgb(252, 0, 0); */
  display: flex;
  justify-content: flex-start;
  flex-direction: column;
- /* align-items: center; */
  overflow-y: auto;
  border-radius: 10px;
  padding: 10px;
- /* margin: 1%; */
 }
+
+#willRead,
+#isReading,
+#haveRead {
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
 .list h2 {
  color: #5e6c84;
 }
@@ -87,13 +110,23 @@ main {
 }
 .list .card * {
  margin: 3%;
- /* font-weight: 200; */
  line-height: 50%;
 }
+.card select {
+ padding: 4px 14px;
+ outline: none;
+ border: none;
+ width: 55%;
+ line-height: 150% !important;
+ cursor: pointer;
+ color: #ffffff;
+ appearance: none;
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ background-color: #6376ca9c;
+ margin: 5% !important;
+}
 .button-container {
- /* width: 100%;
- display: flex;
- justify-content: flex-end; */
  position: relative;
 }
 .button-container button {
@@ -106,10 +139,9 @@ main {
  cursor: pointer;
 }
 
+/* Form */
+
 .newBookForm {
- /* display: flex;
- flex-direction: column;
- justify-content: flex-start; */
  width: 20%;
  padding: 0 30px;
  align-items: center;
@@ -154,6 +186,8 @@ main {
   rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
   rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
+
+/* Responsive */
 @media (max-width: 800px) {
  .container {
   width: 100vw;
@@ -183,55 +217,4 @@ main {
   width: 90%;
   margin: 3%;
  }
-}
-#willRead,
-#isReading,
-#haveRead {
- width: 100%;
- display: flex;
- flex-direction: column;
- align-items: center;
-}
-.card select {
- padding: 4px 14px;
- outline: none;
- border: none;
- width: 55%;
- /* margin-top: 4%; */
- line-height: 150% !important;
- cursor: pointer;
- color: #ffffff;
- appearance: none;
- -webkit-appearance: none;
- -moz-appearance: none;
- background-color: #6376ca9c;
- margin: 5% !important;
- /* background-color: white; */
-}
-.signOutBtn {
- border: none;
- /* padding: 10px; */
- cursor: pointer;
- /* width: 100%; */
- background-color: #ffffff;
-}
-.info {
- display: flex;
- justify-content: flex-start;
- align-items: center;
- padding: 2px 17px 2px 0;
- width: 250px;
- font-style: normal;
- background-color: #ffffff;
- border-radius: 10px;
- height: 60%;
- box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-  rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
- padding: 20px;
-}
-#info *:not(img) {
- width: 28%;
-}
-#info * {
- margin: 2%;
 }
