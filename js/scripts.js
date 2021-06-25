@@ -39,7 +39,7 @@ async function addBookToLibrary(e) {
     .database()
     .ref("users")
     .child(user.uid)
-    .set({
+    .push({
      title: formTitle,
      author: formAuthor,
      pages: formPages,
@@ -109,7 +109,7 @@ async function render() {
    console.log(response);
    if (response != null) {
     books.push(response);
-//     books = response;
+    //     books = response;
     books.forEach((book, index) => {
      if (
       book.readStatus ===
