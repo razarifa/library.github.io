@@ -43,7 +43,7 @@ async function addBookToLibrary(e) {
      readStatus: formReadStatus,
     })
     .then((data) => {
-     console.log("Saved Data", data);
+     return data;
     })
     .catch((error) => {
      console.log("Storing Error", error);
@@ -72,7 +72,6 @@ async function render() {
     .once("value")
     .then((data) => {
      let fetchedData = data.val();
-     console.log("Fetched Data", fetchedData);
      return fetchedData;
     })
     .catch((error) => {
@@ -170,7 +169,6 @@ function removeCard(e) {
     .once("value")
     .then((data) => {
      let fetchedData = data.val();
-     console.log("Fetched Data", fetchedData);
      return fetchedData;
     })
     .catch((error) => {
@@ -186,9 +184,7 @@ function removeCard(e) {
        .database()
        .ref(`users/${user.uid}/${res}`)
        .remove()
-       .then(() => {
-        console.log("element is removed");
-       });
+       .then(() => {});
      }
     }
    }
@@ -208,7 +204,6 @@ function changeStatus(e) {
     .once("value")
     .then((data) => {
      let fetchedData = data.val();
-     console.log("Fetched Data", fetchedData);
      return fetchedData;
     })
     .catch((error) => {
@@ -225,7 +220,6 @@ function changeStatus(e) {
        readStatus: e.options[e.options.selectedIndex].value,
       };
       await firebase.database().ref().update(updates);
-      console.log("updated finally");
       render();
      }
     }
