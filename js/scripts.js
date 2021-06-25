@@ -58,14 +58,14 @@ async function addBookToLibrary(e) {
    //   readStatus: formReadStatus,
    //  });
 
-   fb.collection("userData").document(user.uid).collection("books").add(
-    {
-     title: formTitle,
-     author: formAuthor,
-     pages: formPages,
-     readStatus: formReadStatus,
-    }.toJson()
-   );
+   //    fb.collection("userData").document(user.uid).collection("books").add(
+   //     {
+   //      title: formTitle,
+   //      author: formAuthor,
+   //      pages: formPages,
+   //      readStatus: formReadStatus,
+   //     }.toJson()
+   //    );
   } else {
    localStorage.setItem("books", JSON.stringify(books));
    console.log("stored to localstorage");
