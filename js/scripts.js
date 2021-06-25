@@ -170,7 +170,9 @@ function removeCard(e) {
  //delete from firebase
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   console.log(e.parentElement.parentElement.parentElement.getAttribute("id"));
+   console.log(
+    e.parentElement.parentElement.parentElement.getAttribute("data-index")
+   );
    let response = await firebase.database().ref(
     "users"
      .child(user.uid)
