@@ -82,14 +82,12 @@ async function render() {
      console.log("Fetching Error", error);
     });
    console.log(response);
-   for (let r in response) {
-    console.log("r: " + response[r].title);
-    console.table(response);
-   }
+   console.table(response);
+
    if (response != null) {
-    books.push(response);
-    books.forEach((book, index) => {
-     console.log("book " + book);
+    console.log("book " + book);
+    for (res in response) {
+     book = response[res];
      if (
       book.readStatus ===
       document.querySelector(`#${book.readStatus}`).getAttribute("id")
@@ -98,24 +96,24 @@ async function render() {
       card.classList.add("card");
       document.querySelector(`#${book.readStatus}`).appendChild(card);
       card.innerHTML = `
-       <div class="button-container">
-             <button><i class="fa fa-trash delete"></i> </button>
-             </div>
-            <p><b>Title:</b>${book.title}</p>
-            <p><b>Author: </b>${book.author}</p>
-             <select name="readingStatus" class="statusSelect" >
-             <option value="willRead" class="choice">Want to read</option>
-             <option value="isReading" class="choice">In Progress</option>
-             <option value="haveRead" class="choice">I have already read</option>
-            </select>
-            `;
+      <div class="button-container">
+       <button><i class="fa fa-trash delete"></i> </button>
+      </div>
+      <p><b>Title:</b>${book.title}</p>
+      <p><b>Author: </b>${book.author}</p>
+      <select name="readingStatus" class="statusSelect" >
+      <option value="willRead" class="choice">Want to read</option>
+      <option value="isReading" class="choice">In Progress</option>
+      <option value="haveRead" class="choice">I have already read</option>
+      </select>
+      `;
       [...card.querySelector(".statusSelect")].forEach((s) => {
        if (s.value === book.readStatus) {
         s.setAttribute("selected", "selected");
        }
       });
      }
-    });
+    }
    }
   } else {
    if (localStorage.getItem("books") !== null) {
