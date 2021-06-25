@@ -225,6 +225,7 @@ function changeStatus(e) {
        readStatus: e.options[e.options.selectedIndex].value,
       };
       firebase.database().ref().update(updates);
+      console.log("updated");
      }
     }
    }
