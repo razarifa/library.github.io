@@ -246,7 +246,4 @@ function changeStatus(e) {
  });
 });
 
-firebase.auth().onAuthStateChanged(function () {
- render();
-});
 render();
