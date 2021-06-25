@@ -166,8 +166,33 @@ function removeCard(e) {
  e.parentElement.parentElement.parentElement.parentElement.removeChild(
   e.parentElement.parentElement.parentElement
  );
+
+ //delete from firebase
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
+   console.log(e.parentElement.parentElement.parentElement.getAttribute("id"));
+   let response = await firebase.database().ref(
+    "users"
+     .child(user.uid)
+     .once("value")
+     .then((data) => {
+      let fetchedData = data.val();
+      console.log("Fetched Data", fetchedData);
+      return fetchedData;
+     })
+     .catch((error) => {
+      console.log("Fetching Error", error);
+     })
+   );
+   if (response != null) {
+    for (res in response) {
+     if (
+      res === e.parentElement.parentElement.parentElement.getAttribute("id")
+     ) {
+      console.log("beraberdir");
+     }
+    }
+   }
    console.log("delete data");
   } else {
    localStorage.setItem("books", JSON.stringify(books));
