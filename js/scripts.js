@@ -189,10 +189,11 @@ function removeCard(e) {
     for (res in response) {
      console.log(res);
      console.log(
-      e.parentElement.parentElement.parentElement.getAttribute("id")
+      e.parentElement.parentElement.parentElement.getAttribute("data-index")
      );
      if (
-      res === e.parentElement.parentElement.parentElement.getAttribute("id")
+      res ===
+      e.parentElement.parentElement.parentElement.getAttribute("data-index")
      ) {
       console.log("beraberdir");
       await firebase
