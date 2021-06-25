@@ -108,7 +108,8 @@ async function render() {
     });
    console.log(response);
    if (response != null) {
-    books = response;
+    books.push(response);
+//     books = response;
     books.forEach((book, index) => {
      if (
       book.readStatus ===
