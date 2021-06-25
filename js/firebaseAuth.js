@@ -54,10 +54,7 @@ function signOut() {
  firebase
   .auth()
   .signOut()
-  .then(() => {
-   console.log("signed out finally");
-   location.reload();
-  })
+  .then(() => {})
   .catch((error) => {
    console.log("error");
   });

@@ -55,10 +55,6 @@ async function addBookToLibrary(e) {
  render();
  this.reset();
 }
-
-function setBook(data) {
- books = data;
-}
 async function render() {
  document.querySelector(`#willRead`).innerHTML = "";
  document.querySelector(`#isReading`).innerHTML = "";
@@ -142,7 +138,6 @@ async function render() {
   }
  });
 }
-
 function removeCard(e) {
  //delete from array
  books.map((book) => {
@@ -252,4 +247,7 @@ function changeStatus(e) {
  });
 });
 
+firebase.auth().onAuthStateChanged(function () {
+ render();
+});
 render();
