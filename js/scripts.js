@@ -83,7 +83,7 @@ async function render() {
     });
    console.log(response);
    for (let r in response) {
-    console.log("r: " + response[r]);
+    console.log("r: " + response[r].title);
     console.table(response);
    }
    if (response != null) {
