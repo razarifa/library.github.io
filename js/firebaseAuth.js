@@ -22,7 +22,6 @@ initApp = function () {
    ui.start("#firebaseui-auth-container", uiConfig);
    document.getElementById("info").classList.remove("info");
    document.getElementById("info").innerHTML = "";
-   location.reload();
   }
  });
 };
@@ -38,5 +37,6 @@ function signOut() {
   .then(() => {})
   .catch((error) => {
    console.log("error");
+   location.reload();
   });
 }
