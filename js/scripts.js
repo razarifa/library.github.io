@@ -23,14 +23,12 @@ async function addBookToLibrary(e) {
  let formAuthor = document.querySelector("#author").value;
  let formPages = document.querySelector("#pages").value;
  let formReadStatus = document.querySelector("#readingStatus").value;
- console.log(books);
  books.push({
   title: formTitle,
   author: formAuthor,
   pages: formPages,
   readStatus: formReadStatus,
  });
- console.log(books);
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
@@ -52,7 +50,6 @@ async function addBookToLibrary(e) {
     });
   } else {
    localStorage.setItem("books", JSON.stringify(books));
-   console.log("stored to localstorage");
   }
  });
  render();
@@ -81,9 +78,6 @@ async function render() {
     .catch((error) => {
      console.log("Fetching Error", error);
     });
-   console.log(response);
-   console.table(response);
-
    if (response != null) {
     for (res in response) {
      let book = response[res];
@@ -169,9 +163,6 @@ function removeCard(e) {
  //delete from firebase
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   console.log(
-    e.parentElement.parentElement.parentElement.getAttribute("data-index")
-   );
    let response = await firebase
     .database()
     .ref("users")
@@ -187,15 +178,10 @@ function removeCard(e) {
     });
    if (response != null) {
     for (res in response) {
-     console.log(res);
-     console.log(
-      e.parentElement.parentElement.parentElement.getAttribute("data-index")
-     );
      if (
       res ===
       e.parentElement.parentElement.parentElement.getAttribute("data-index")
      ) {
-      console.log("beraberdir");
       await firebase
        .database()
        .ref(`users/${user.uid}/${res}`)
@@ -206,7 +192,6 @@ function removeCard(e) {
      }
     }
    }
-   console.log("delete data");
   } else {
    localStorage.setItem("books", JSON.stringify(books));
   }
@@ -214,22 +199,50 @@ function removeCard(e) {
  //delete from firebase
 }
 function changeStatus(e) {
- books.map((book) => {
-  if (
-   e.parentElement.children[1].innerText.substr(6).toString() === book.title
-  ) {
-   book.readStatus = e.options[e.options.selectedIndex].value;
-
-   firebase.auth().onAuthStateChanged(async function (user) {
-    if (user) {
-     console.log("update write");
-    } else {
+ firebase.auth().onAuthStateChanged(async function (user) {
+  if (user) {
+   let response = await firebase
+    .database()
+    .ref("users")
+    .child(user.uid)
+    .once("value")
+    .then((data) => {
+     let fetchedData = data.val();
+     console.log("Fetched Data", fetchedData);
+     return fetchedData;
+    })
+    .catch((error) => {
+     console.log("Fetching Error", error);
+    });
+   if (response != null) {
+    for (res in response) {
+     if (
+      res ===
+      e.parentElement.parentElement.parentElement.getAttribute("data-index")
+     ) {
+      let updates = {};
+      updates[`/users/${user.uid}/${res}`] = {
+       title: response[res].title,
+       author: response[res].author,
+       pages: response[res].pages,
+       readStatus: e.options[e.options.selectedIndex].value,
+      };
+     }
+    }
+   }
+  } else {
+   books.map((book) => {
+    if (
+     e.parentElement.children[1].innerText.substr(6).toString() === book.title
+    ) {
+     book.readStatus = e.options[e.options.selectedIndex].value;
      localStorage.setItem("books", JSON.stringify(books));
     }
    });
-   render();
   }
  });
+
+ render();
 }
 [...document.querySelectorAll(".list")].forEach((list) => {
  list.addEventListener("click", (e) => {
