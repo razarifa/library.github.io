@@ -199,6 +199,7 @@ function removeCard(e) {
  //delete from firebase
 }
 function changeStatus(e) {
+ console.log(e);
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
    let response = await firebase
@@ -215,7 +216,7 @@ function changeStatus(e) {
      console.log("Fetching Error", error);
     });
    if (response != null) {
-    console.log(e.parentElement.parentElement);
+    console.log(e);
     for (res in response) {
      if (
       res ===
