@@ -187,6 +187,10 @@ function removeCard(e) {
     });
    if (response != null) {
     for (res in response) {
+     console.log(res);
+     console.log(
+      e.parentElement.parentElement.parentElement.getAttribute("id")
+     );
      if (
       res === e.parentElement.parentElement.parentElement.getAttribute("id")
      ) {
