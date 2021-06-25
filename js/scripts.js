@@ -23,8 +23,15 @@ async function addBookToLibrary(e) {
  let formAuthor = document.querySelector("#author").value;
  let formPages = document.querySelector("#pages").value;
  let formReadStatus = document.querySelector("#readingStatus").value;
- const book = new Book(formTitle, formAuthor, formPages, formReadStatus);
- books.push(book);
+ //  const book = new Book(formTitle, formAuthor, formPages, formReadStatus);
+ console.log(books);
+ books.push({
+  title: formTitle,
+  author: formAuthor,
+  pages: formPages,
+  readStatus: formReadStatus,
+ });
+ console.log(books);
 
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
@@ -50,8 +57,18 @@ async function addBookToLibrary(e) {
    //   pages: formPages,
    //   readStatus: formReadStatus,
    //  });
+
+   fb.collection("userData").document(user.uid).collection("books").add(
+    {
+     title: formTitle,
+     author: formAuthor,
+     pages: formPages,
+     readStatus: formReadStatus,
+    }.toJson()
+   );
   } else {
    localStorage.setItem("books", JSON.stringify(books));
+   console.log("stored to localstorage");
   }
  });
  render();
