@@ -56,6 +56,7 @@ function signOut() {
   .signOut()
   .then(() => {
    console.log("signed out finally");
+   location.reload();
   })
   .catch((error) => {
    console.log("error");
