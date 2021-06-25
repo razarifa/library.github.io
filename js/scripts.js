@@ -225,7 +225,8 @@ function changeStatus(e) {
        readStatus: e.options[e.options.selectedIndex].value,
       };
       await firebase.database().ref().update(updates);
-      console.log("updated");
+      console.log("updated finally");
+      render();
      }
     }
    }
@@ -236,12 +237,11 @@ function changeStatus(e) {
     ) {
      book.readStatus = e.options[e.options.selectedIndex].value;
      localStorage.setItem("books", JSON.stringify(books));
+     render();
     }
    });
   }
  });
-
- render();
 }
 [...document.querySelectorAll(".list")].forEach((list) => {
  list.addEventListener("click", (e) => {
