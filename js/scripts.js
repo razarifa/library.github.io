@@ -139,7 +139,7 @@ async function render() {
  });
 }
 function removeCard(e) {
- //delete from array
+ //delete from localstorage
  books.map((book) => {
   if (
    e.parentElement.parentElement.parentElement.children[1].innerText
@@ -187,7 +187,6 @@ function removeCard(e) {
    localStorage.setItem("books", JSON.stringify(books));
   }
  });
- //delete from firebase
 }
 function changeStatus(e) {
  firebase.auth().onAuthStateChanged(async function (user) {
