@@ -167,12 +167,7 @@ function removeCard(e) {
  );
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   user.delete().catch(function (error) {
-    if (error.code === "auth/requires-recent-login") {
-     window.alert("Please sign-in and try again.");
-     firebase.auth().signOut();
-    }
-   });
+   console.log("delete data");
   } else {
    localStorage.setItem("books", JSON.stringify(books));
   }
