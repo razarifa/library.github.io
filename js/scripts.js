@@ -23,7 +23,6 @@ async function addBookToLibrary(e) {
  let formAuthor = document.querySelector("#author").value;
  let formPages = document.querySelector("#pages").value;
  let formReadStatus = document.querySelector("#readingStatus").value;
- //  const book = new Book(formTitle, formAuthor, formPages, formReadStatus);
  console.log(books);
  books.push({
   title: formTitle,
@@ -51,21 +50,6 @@ async function addBookToLibrary(e) {
     .catch((error) => {
      console.log("Storing Error", error);
     });
-   //  db.collection("books").add({
-   //   title: formTitle,
-   //   author: formAuthor,
-   //   pages: formPages,
-   //   readStatus: formReadStatus,
-   //  });
-
-   //    fb.collection("userData").document(user.uid).collection("books").add(
-   //     {
-   //      title: formTitle,
-   //      author: formAuthor,
-   //      pages: formPages,
-   //      readStatus: formReadStatus,
-   //     }.toJson()
-   //    );
   } else {
    localStorage.setItem("books", JSON.stringify(books));
    console.log("stored to localstorage");
@@ -84,15 +68,6 @@ async function render() {
  document.querySelector(`#haveRead`).innerHTML = "";
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   //  var uid = user.uid;
-   //  console.log(uid);
-   //  let response = await db
-   //   .collection("books")
-   //   .get()
-   //   .then((querySnapshot) => {
-   //    chartData = querySnapshot.docs.map((doc) => doc.data());
-   //    return chartData;
-   //   });
    let response = await firebase
     .database()
     .ref("users")
@@ -107,10 +82,14 @@ async function render() {
      console.log("Fetching Error", error);
     });
    console.log(response);
+   for (let r in response) {
+    console.log("r: " + response[r]);
+    console.table(response);
+   }
    if (response != null) {
     books.push(response);
-    //     books = response;
     books.forEach((book, index) => {
+     console.log("book " + book);
      if (
       book.readStatus ===
       document.querySelector(`#${book.readStatus}`).getAttribute("id")
@@ -139,7 +118,6 @@ async function render() {
     });
    }
   } else {
-   // User is signed out.
    if (localStorage.getItem("books") !== null) {
     books = JSON.parse(localStorage.getItem("books"));
    }
@@ -191,22 +169,6 @@ function removeCard(e) {
  );
  firebase.auth().onAuthStateChanged(async function (user) {
   if (user) {
-   //  db
-   //   .collection("books")
-   //   .get()
-   //   .then((snapshot) => {
-   //    snapshot.docs.forEach((book) => {
-   //     if (
-   //      book.data().title ===
-   //      e.parentElement.parentElement.parentElement.children[1].innerText
-   //       .substr(6)
-   //       .toString()
-   //     ) {
-   //      let id = book.id;
-   //      db.collection("books").doc(id).delete();
-   //     }
-   //    });
-   //   });
    user.delete().catch(function (error) {
     if (error.code === "auth/requires-recent-login") {
      window.alert("Please sign-in and try again.");
