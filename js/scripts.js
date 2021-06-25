@@ -201,9 +201,6 @@ function removeCard(e) {
        .remove()
        .then(() => {
         console.log("element is removed");
-       })
-       .catch((error) => {
-        console.log(error);
        });
      }
     }
