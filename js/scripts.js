@@ -173,19 +173,19 @@ function removeCard(e) {
    console.log(
     e.parentElement.parentElement.parentElement.getAttribute("data-index")
    );
-   let response = await firebase.database().ref(
-    "users"
-     .child(user.uid)
-     .once("value")
-     .then((data) => {
-      let fetchedData = data.val();
-      console.log("Fetched Data", fetchedData);
-      return fetchedData;
-     })
-     .catch((error) => {
-      console.log("Fetching Error", error);
-     })
-   );
+   let response = await firebase
+    .database()
+    .ref("users")
+    .child(user.uid)
+    .once("value")
+    .then((data) => {
+     let fetchedData = data.val();
+     console.log("Fetched Data", fetchedData);
+     return fetchedData;
+    })
+    .catch((error) => {
+     console.log("Fetching Error", error);
+    });
    if (response != null) {
     for (res in response) {
      if (
