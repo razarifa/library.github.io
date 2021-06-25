@@ -190,6 +190,16 @@ function removeCard(e) {
       res === e.parentElement.parentElement.parentElement.getAttribute("id")
      ) {
       console.log("beraberdir");
+      await firebase
+       .database()
+       .ref(`users/${user.uid}/${res}`)
+       .remove()
+       .then(() => {
+        console.log("element is removed");
+       })
+       .catch((error) => {
+        console.log(error);
+       });
      }
     }
    }
